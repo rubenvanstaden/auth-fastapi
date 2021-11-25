@@ -7,16 +7,16 @@ from passlib.context import CryptContext
 from pydantic import BaseModel
 
 
-SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
+SECRET_KEY = "51c15d357054acd2238db47deed0ff81e17c66a7369127cd0b4ce12ad5c57abc"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 
 fake_users_db = {
-    "johndoe": {
-        "username": "ruben",
+    "rubenvs": {
+        "username": "rubenvs",
         "full_name": "Ruben van Staden",
-        "email": "ruben@gmail.com",
+        "email": "rubenvs@gmail.com",
         "hashed_password": "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW",
         "disabled": False,
     }
@@ -125,7 +125,7 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
     return {"access_token": access_token, "token_type": "bearer"}
 
 
-@app.get("/users/me/", response_model=User)
+@app.get("/users/ruben/", response_model=User)
 async def read_users_me(current_user: User = Depends(get_current_active_user)):
     return current_user
 
