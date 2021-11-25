@@ -6,6 +6,9 @@ authors = ["Ruben van Staden <rubenvanstaden@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+fastapi = "^0.70.0"
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
