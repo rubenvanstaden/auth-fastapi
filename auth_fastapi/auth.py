@@ -1,17 +1,17 @@
 from jose import jwt
 from typing import Optional
 from pydantic import BaseModel
-from passlib.context import CryptContext
 from datetime import datetime, timedelta
+from passlib.context import CryptContext
 
 import db
 
 
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+
 SECRET_KEY = "51c15d357054acd2238db47deed0ff81e17c66a7369127cd0b4ce12ad5c57abc"
 ALGORITHM = "HS256"
-
-
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
 class Token(BaseModel):
@@ -23,12 +23,12 @@ class TokenData(BaseModel):
     username: Optional[str] = None
 
 
-def verify_password(plain_password, hashed_password):
-    return pwd_context.verify(plain_password, hashed_password)
-
-
 def get_password_hash(password):
     return pwd_context.hash(password)
+
+
+def verify_password(plain_password, hashed_password):
+    return pwd_context.verify(plain_password, hashed_password)
 
 
 def authenticate_user(fake_db, username: str, password: str):
