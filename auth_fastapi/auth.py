@@ -4,7 +4,7 @@ from pydantic import BaseModel
 from datetime import datetime, timedelta
 from passlib.context import CryptContext
 
-import db
+import auth_fastapi.db as db
 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")

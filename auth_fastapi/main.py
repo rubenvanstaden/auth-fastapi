@@ -3,8 +3,8 @@ from datetime import timedelta
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 
-import db
-import auth
+import auth_fastapi.db as db
+import auth_fastapi.auth as auth
 
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
@@ -66,7 +66,7 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
     return {"access_token": access_token, "token_type": "bearer"}
 
 
-@app.get("/users/ruben/", response_model=db.User)
+@app.get("/users/me/", response_model=db.User)
 async def read_users_me(current_user: db.User = Depends(get_current_active_user)):
     return current_user
 

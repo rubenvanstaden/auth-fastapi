@@ -1,0 +1,25 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2021 by Anyon Systems Inc.  All rights reserved.          ***
+# This computer program is a property of Anyon Systems Inc.               ***
+# and may contain confidential trade secrets.                             ***
+# Use, examination, copying, transfer and disclosure to others,           ***
+# in whole or in part, are prohibited except with the express prior       ***
+# written consent of Anyon Systems Inc.                                   ***
+# ---------------------------------------------------------------------------
+
+version: "3.8"
+
+services:
+
+  auth-fastapi-server:
+    image: thunderhead/auth-fastapi-image
+    container_name: auth-fastapi-server
+    ports:
+      - 0.0.0.0:50051:50053
+    networks:
+      - main-net
+    command: uvicorn auth_fastapi.main:app --host 0.0.0.0 --port 50053
+
+networks:
+  main-net:
+    driver: bridge
